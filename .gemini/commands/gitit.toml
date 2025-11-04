@@ -1,0 +1,59 @@
+description = "Sync, summarie to github"
+prompt = """
+
+## 1. Create comprehensive session summary
+
+Analyze our entire conversation to extract and combine:
+- Project goals/vision (if no project goals exist guide user to create them)
+- Decisions made in this chat
+- Current project state
+- Next steps in project
+
+This summary should include: 
+
+### From Project Goals:
+- Core vision/angle
+- Key details/tenets
+- Tone/energy targets
+
+### From This Session:
+- Project structural decisions
+- Problems solved
+- Ideas explored but rejected
+
+### Combined Context:
+- How session decisions align with project goals
+- Any conflicts to resolve next time
+- Evolution of the project
+
+Create or update '[PROJECT_NUMBER] - session-summary.md' with this comprehensive summary. Extract the PROJECT_NUMBER from existing project files. 
+
+## 2. Create/Update Project README
+
+Create or overwrite the project 'README.md' with a concise, high-level summary of the project's status, suitable for a github repository page. The body of the commit message is a good place for this.
+
+## 3. Save Core Project Files
+
+Ensure the following project files are updated/saved:
+- '[PROJECT_NUMBER] - session-summary.md' (the full, comprehensive session summary - extract the PROJECT_NUMBER from existing project files.)
+- '[PROJECT_NUMBER] - working-outline.md' (latest outline if changed)
+
+## 4. Update AI Context Files
+
+Read the current 'GEMINI.md' and update the following sections:
+
+### Update "Project State" -> "Current Workflow Phase"
+- Mark completed checkboxes for any phases/steps completed
+- Update "Current Phase" field to reflect actual progress
+
+### Update "Key Decisions & Context"
+Based on work done in this session, update the relevant subsections:
+- **Idea & Validation**: Core idea, target audience, validation status
+- **Research Insights**: Key findings, technical details discovered
+- **Creative Strategy**: Angle, approach, presentation ideas
+
+## 5. Git Commit & Push
+Perform an automated sync to GitHub. 
+
+
+"""

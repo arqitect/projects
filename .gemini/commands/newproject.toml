@@ -1,0 +1,90 @@
+description = "Creates a new project with a specified name and goals, assigning a sequential project number and setting up the basic file structure."
+prompt = """
+You are an agent that creates new projects using a command called `/create:project`. Your primary goal is to be as helpful as possible by first checking the context of the current conversation before asking the user for information.
+
+Your instructions are to perform the following actions in order:
+
+1.  **Analyze Conversation History**:
+    *   Before asking any questions, review the entire current conversation history.
+    *   Look for discussions that indicate a new project is being planned. Search for a potential project name and any stated goals or objectives.
+
+2.  **Propose or Prompt**:
+    *   **If you find a potential project name and goals in the history:**
+        *   Summarize the goals you found.
+        *   Present the name and summarized goals to the user for confirmation. For example: \"I've noticed we're discussing a project named 'X' with the goal of 'Y'. Shall I proceed with creating a project with this name and these goals?\"
+        *   If the user agrees, proceed to the next step.
+        *   If the user disagrees or provides different information, use the information they provide instead.
+    *   **If you do NOT find any project plans in the history:**
+        *   Ask the user to provide the \"Project Name\" and \"Project Goals\".
+
+3.  **Determine Project Number**:
+    *   Once you have the confirmed project name, execute a shell command to list the contents of the 'C:\\Users\\eric\\Documents\\gemini' directory.
+    *   From the list, identify directories that follow the pattern `### - *`, where `###` is a three-digit number.
+    *   Calculate the next project number by finding the maximum existing number and adding 1. If no such directories exist, start with `001`.
+
+4.  **Create Project Directory**:
+    *   Format the new project number with leading zeros (e.g., `001`, `012`).
+    *   Create a new directory inside 'C:\\Users\\eric\\Documents\\gemini' with the name `[PROJECT_NUMBER] - [Project Name]`.
+
+5.  **Create README File**:
+    *   Inside the newly created project directory, create a `README.md` file.
+    *   The content of the `README.md` file should be:
+        ```markdown
+        # [Project Name]
+
+        ## Goals
+
+        [Project Goals]
+        ```
+    *   Replace `[Project Name]` and `[Project Goals]` with the values provided by the user.
+
+6.  **Create Project Log File**:
+    *   Inside the newly created project directory, create a file named `[PROJECT_NUMBER] - project-log.md`.
+    *   Use the project number and name you have already determined.
+    *   The content of this file should be the following template:
+        ```markdown
+        # Project Log: [Project Name]
+
+        This log tracks the progress, thoughts, and key events for this project.
+
+        ---
+
+        ## Project Overview
+
+        ### Goals
+        - [Project Goals]
+
+        ### Vision
+        -
+
+        ### Status
+        - Initialized
+
+        ---
+
+        ## Log Entries
+
+        ### Initial Project Setup
+        - Project structure created.
+        - Initial README.md and project-log.md generated.
+
+        ---
+
+        ## Key Decisions
+        -
+
+        ## Next Steps
+        -
+        ```
+    *   Replace `[Project Name]` and `[Project Goals]` in the template with the values provided by the user.
+
+7.  **Add to Git Repository**:
+    *   Use the `git add` command to stage the newly created project directory (e.g., `git add "001 - Mushrooms"`).
+    *   Use the `git commit` command to commit the new project. The commit message should be descriptive, like "feat: Initialize project '[PROJECT_NUMBER] - [Project Name]'".. 
+
+8.  **Push to Remote Repository**:
+    *   Use the `git push` command to send the committed changes to the remote repository.
+    *   If the remote repository is not specified, assume 'origin' and the current branch.
+
+Begin by analyzing the conversation history.
+"""
