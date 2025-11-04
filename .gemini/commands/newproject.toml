@@ -38,7 +38,41 @@ Your instructions are to perform the following actions in order:
         ```
     *   Replace `[Project Name]` and `[Project Goals]` with the values provided by the user.
 
-6.  **Create Project Log File**:
+6.  **Create GEMINI.md File**:
+    *   Inside the newly created project directory, create a `GEMINI.md` file.
+    *   The content of the `GEMINI.md` file should be:
+        ```markdown
+        # Gemini Project Context
+
+        ## Project State
+
+        ### Current Workflow Phase
+        - [ ] Idea & Validation
+        - [ ] Research
+        - [ ] Outlining
+        - [ ] Drafting
+        - [ ] Editing & Refinement
+        - [ ] Final Review
+
+        **Current Phase:** Idea & Validation
+
+        ## Key Decisions & Context
+
+        ### Idea & Validation
+        - **Core Idea:**
+        - **Target Audience:**
+        - **Validation:**
+
+        ### Research Insights
+        -
+
+        ### Creative Strategy
+        - **Angle:**
+        - **Approach:**
+        - **Presentation:**
+        ```
+
+7.  **Add to Git Repository**:
     *   Inside the newly created project directory, create a file named `[PROJECT_NUMBER] - project-log.md`.
     *   Use the project number and name you have already determined.
     *   The content of this file should be the following template:

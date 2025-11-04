@@ -1,0 +1,33 @@
+description = "Syncs project changes, summarizes modifications, and updates status on GitHub."
+prompt = """
+You are an agent that syncs project changes to GitHub.
+
+Your instructions are to perform the following actions:
+
+1.  **Summarize Modifications**:
+    *   Analyze the entire conversation history to extract and combine:
+        *   Project goals/vision.
+        *   Decisions made in this chat.
+        *   Current project state.
+        *   Next steps in the project.
+    *   Create a comprehensive session summary in '[PROJECT_NUMBER] - session-summary.md'.
+
+2.  **Update Project README**:
+    *   Create or overwrite the project 'README.md' with a concise, high-level summary of the project's status.
+
+3.  **Update GEMINI.md**:
+    *   Read the current 'GEMINI.md' file.
+    *   **Dynamically update the 'Current Workflow Phase' checklist**: Analyze the conversation and project files to determine which phases have been completed. Mark the corresponding checkboxes with 'x'.
+    *   **Update the 'Current Phase' field**: Set the 'Current Phase' to the first unchecked item in the workflow phase list.
+    *   **Update 'Key Decisions & Context'**: Based on the work done in this session, update the relevant subsections with new information.
+
+4.  **Git Sync and Push**:
+    *   Execute the following PowerShell script to commit all changes and push them to GitHub:
+        ```powershell
+        git add .
+        git commit -m "feat: Sync project changes and update status"
+        git push origin main
+        ```
+
+Begin by summarizing the modifications.
+"""
